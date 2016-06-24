@@ -18,8 +18,10 @@ brew install gimme godep
 eval "$(gimme 1.6.2)"
 npm install -g grunt-cli
 npm install
-grunt release
-docker build --rm -t dockerui .
+grunt release shell:buildImage
+
+docker tag dockerui mrjoy/rpi-dockerui:v0.11.0-beta
+docker push mrjoy/rpi-dockerui:v0.11.0-beta
 ```
 
 
