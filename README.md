@@ -20,8 +20,8 @@ npm install -g grunt-cli
 npm install
 grunt release shell:buildImage
 
-docker tag dockerui mrjoy/rpi-dockerui:v0.11.0-beta
-docker push mrjoy/rpi-dockerui:v0.11.0-beta
+docker tag ui-for-docker mrjoy/rpi-ui-for-docker:v0.11.0-beta
+docker push mrjoy/rpi-ui-for-docker:v0.11.0-beta
 ```
 
 
