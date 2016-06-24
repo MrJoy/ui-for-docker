@@ -5,6 +5,20 @@ UI For Docker is a web interface for the Docker Remote API.  The goal is to prov
 
 ![Container](/container.png)
 
+### Fork
+
+This fork is for cross-compiling DockerUI for ARM, and preparing ARM-ready Docker images.
+
+### Setup
+
+First, install [Docker for Mac](https://docs.docker.com/engine/installation/mac/).  This will allow you to run ARM-based Docker images locally.
+
+```bash
+brew install gimme godep
+eval "$(gimme 1.6.2)"
+
+```
+
 
 ### Goals
 * Minimal dependencies - I really want to keep this project a pure html/js app.
