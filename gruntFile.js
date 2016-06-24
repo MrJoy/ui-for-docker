@@ -86,7 +86,7 @@ module.exports = function (grunt) {
         },
         clean: {
             all: ['<%= distdir %>/*'],
-            app: ['<%= distdir %>/*', '!<%= distdir %>/ui-for-docker'],
+            app: ['<%= distdir %>/*', '!<%= distdir %>/dockerui'],
             tmpl: ['<%= distdir %>/templates']
         },
         copy: {
@@ -244,28 +244,28 @@ module.exports = function (grunt) {
         },
         shell: {
             buildImage: {
-                command: 'docker build --rm -t ui-for-docker .'
+                command: 'docker build --rm -t dockerui .'
             },
             buildBinary: {
                 command: [
-                    'docker run --rm -v $(pwd):/src centurylink/golang-builder',
-                    'shasum ui-for-docker > ui-for-docker-checksum.txt',
+                    'CGO_ENABLED=0 GOARCH=arm GOARM=7 GOOS=linux go build -a --installsuffix cgo --ldflags="-s" .',
+                    'shasum dockerui > dockerui-checksum.txt',
                     'mkdir -p dist',
-                    'mv ui-for-docker dist/'
+                    'mv dockerui dist/'
                 ].join(' && ')
             },
             run: {
                 command: [
-                    'docker stop ui-for-docker',
-                    'docker rm ui-for-docker',
-                    'docker run --privileged -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock --name ui-for-docker ui-for-docker'
+                    'docker stop dockerui',
+                    'docker rm dockerui',
+                    'docker run --privileged -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock --name dockerui dockerui'
                 ].join(';')
             },
             runSwarm: {
                 command: [
-                    'docker stop ui-for-docker',
-                    'docker rm ui-for-docker',
-                    'docker run --net=host -d --name ui-for-docker ui-for-docker -e http://127.0.0.1:2374'
+                    'docker stop dockerui',
+                    'docker rm dockerui',
+                    'docker run --net=host -d --name dockerui dockerui -e http://127.0.0.1:2374'
                 ].join(';')
             },
             cleanImages: {
@@ -275,7 +275,7 @@ module.exports = function (grunt) {
         'if': {
             binaryNotExist: {
                 options: {
-                    executable: 'dist/ui-for-docker'
+                    executable: 'dist/dockerui'
                 },
                 ifFalse: ['shell:buildBinary']
             }
