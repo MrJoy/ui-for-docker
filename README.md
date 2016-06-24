@@ -16,7 +16,10 @@ First, install [Docker for Mac](https://docs.docker.com/engine/installation/mac/
 ```bash
 brew install gimme godep
 eval "$(gimme 1.6.2)"
-
+npm install -g grunt-cli
+npm install
+grunt release
+docker build --rm -t dockerui .
 ```
 
 
