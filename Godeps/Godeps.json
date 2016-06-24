@@ -1,0 +1,30 @@
+{
+	"ImportPath": "github.com/crosbymichael/dockerui",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v63",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorilla/context",
+			"Comment": "v1.1-4-gaed02d1",
+			"Rev": "aed02d124ae4a0e94fea4541c8effd05bf0c8296"
+		},
+		{
+			"ImportPath": "github.com/gorilla/csrf",
+			"Comment": "v1.4-5-g4642ecf",
+			"Rev": "4642ecf016ef548770875073f867ea02b4385f69"
+		},
+		{
+			"ImportPath": "github.com/gorilla/securecookie",
+			"Comment": "v1.1-2-gff35634",
+			"Rev": "ff356348f74133a59d3e93aa24b5b4551b6fe90d"
+		},
+		{
+			"ImportPath": "github.com/pkg/errors",
+			"Comment": "v0.7.0-3-gcbd18b5",
+			"Rev": "cbd18b5440315aa74a17dee2e50b67675b872b49"
+		}
+	]
+}
